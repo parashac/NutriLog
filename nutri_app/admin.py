@@ -1,4 +1,10 @@
 from django.contrib import admin
-from nutri_app.models import Fit
+from nutri_app.models import Userprofile,FoodItem, Meal, FoodLog, Exercise, ExerciseLog
+
 # Register your models here.
-admin.site.register(Fit)
+admin.site.register(Userprofile)
+admin.site.register(FoodItem)
+admin.site.register(Meal)
+admin.site.register(FoodLog)
+admin.site.register(Exercise)
+admin.site.register(ExerciseLog)
