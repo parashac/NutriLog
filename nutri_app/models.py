@@ -23,28 +23,28 @@ class Userprofile(models.Model):
 
 
 class FoodItem(models.Model):
-    name_1 = models.CharField(max_length=100)
-    # calories_per_100g = models.FloatField()
+    name = models.CharField(max_length=100)
+    calories_per100g = models.FloatField(max_length=20)
 
     def __str__(self):
-        return self.name_1
+        return self.name
 
 class Meal(models.Model):
     MEAL_TYPE= [
-        ('B', 'Breakfast'),
-        ('L', 'Lunch'),
-        ('D', 'Dinner'),
-        ('S', 'Snack')
+        ('Breakfast', 'Breakfast'),
+        ('Lunch', 'Lunch'),
+        ('Dinner', 'Dinner'),
+        ('Snack', 'Snack')
     ]
 
     user = models.ForeignKey(Userprofile, on_delete=models.CASCADE)
-    meal_type = models.CharField(max_length=1, choices=MEAL_TYPE)
+    meal_type = models.CharField(max_length=10, choices=MEAL_TYPE)
     date = models.DateField()
 
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.get_meal_type_display()} - {self.user.username}"
+        return f"{self.get_meal_type_display()} - {self.user.user.username}"
 
 
 class FoodLog(models.Model):
@@ -53,25 +53,29 @@ class FoodLog(models.Model):
     meal = models.ForeignKey(Meal, on_delete=models.SET_NULL, null=True, blank=True)
 
     quantity_grams = models.FloatField()
-    calories = models.FloatField()
+    calories = models.FloatField(editable=False)
 
     date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def save(self, *args, **kwargs):
+        self.calories = (self.food_item.calories_per100g * self.quantity_grams) / 100
+        super().save(*args, **kwargs)
+
     def __str__(self):
-        return f"{self.food_item.name} - {self.user.username}"
+        return f"{self.food_item.name} - {self.calories:.2f} kcal(intake)"
 
 class Exercise(models.Model):
 
     CATEGORY = [
-        ('C', 'Cardio'),
-        ('S', 'Strength'),
-        ('F', 'Flexibility'),
+        ('Cardio', 'Cardio'),
+        ('Strength', 'Strength'),
+        ('Flexibility', 'Flexibility'),
     ]
 
     name = models.CharField(max_length=100)
     met_value = models.FloatField()
-    category = models.CharField(max_length=1, choices=CATEGORY)
+    category = models.CharField(max_length=20, choices=CATEGORY)
 
     def __str__(self):
         return self.name
@@ -80,11 +84,16 @@ class ExerciseLog(models.Model):
     user = models.ForeignKey(Userprofile, on_delete=models.CASCADE)
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
     duration_minutes = models.PositiveIntegerField()
-    calories_burned = models.FloatField()
+    calories_burned = models.FloatField(editable=False)
 
     date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+
+    def save(self, *args, **kwargs):
+        weight = self.user.weight
+        self.calories_burned = (self.exercise.met_value * weight * self.duration_minutes) / 60
+        super().save(*args, **kwargs)
     def __str__(self):
-        return f"{self.exercise.name} - {self.user.username}"
+        return f"{self.exercise.name} - {self.calories_burned:.2f} kcal(burned)"
 
