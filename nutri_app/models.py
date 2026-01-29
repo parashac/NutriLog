@@ -21,6 +21,12 @@ class Userprofile(models.Model):
     def __str__(self):
         return self.user.username
 
+class DailyGoal(models.Model):
+    user = models.ForeignKey(Userprofile, on_delete=models.CASCADE)
+    calorie_target = models.FloatField()
+
+    def __str__(self):
+        return f"{self.user.user.username} - {self.calorie_target} kcal"
 
 class FoodItem(models.Model):
     name = models.CharField(max_length=100)
