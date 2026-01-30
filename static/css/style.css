@@ -13,3 +13,256 @@ body {
 h3, h4 {
     font-weight: bold;
 }
+.chart-wrapper {
+    position: relative;
+    width: 350px;
+    height: 350px;   /* CONTROL DONUT SIZE HERE */
+    margin: auto;
+}
+.food-log-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #2c3e50;
+    }
+
+    .btn-add-food {
+        background-color: #0066cc;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        border: none;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .btn-add-food:hover {
+        background-color: #0052a3;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 102, 204, 0.3);
+        color: white;
+    }
+
+    .food-log-table {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .table {
+        margin-bottom: 0;
+    }
+
+    .table thead {
+        background-color: #34495e;
+        color: white;
+    }
+
+    .table thead th {
+        padding: 1.25rem 1rem;
+        font-weight: 600;
+        font-size: 1rem;
+        border: none;
+        text-align: left;
+    }
+
+    .table tbody td {
+        padding: 1rem;
+        vertical-align: middle;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    .meal-badge {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        text-align: center;
+        min-width: 90px;
+    }
+
+    .meal-badge.breakfast {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .meal-badge.lunch {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .meal-badge.dinner {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .meal-badge.snack {
+        background-color: #5cb85c;
+        color: white;
+    }
+
+    .date-time {
+        color: #2c3e50;
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+
+    .food-item {
+        color: #2c3e50;
+        font-size: 1rem;
+    }
+
+    .quantity, .calories {
+        color: #495057;
+        font-size: 0.95rem;
+    }
+
+    .notes {
+        color: #6c757d;
+        font-size: 0.9rem;
+        font-style: italic;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .btn-action {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        transition: all 0.2s ease;
+    }
+
+    .btn-action:hover {
+        transform: scale(1.1);
+    }
+
+    .btn-edit {
+        color: #2c3e50;
+    }
+
+    .btn-delete {
+        color: #dc3545;
+    }
+
+    .icon-edit, .icon-delete {
+        font-size: 1.25rem;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+        color: #6c757d;
+        font-style: italic;
+    }
+
+    .stats-summary {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .stat-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .stat-label {
+        font-size: 0.875rem;
+        color: #6c757d;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #2c3e50;
+    }
+
+    .stat-unit {
+        font-size: 1rem;
+        color: #6c757d;
+        margin-left: 0.25rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .food-log-container {
+            padding: 1rem;
+        }
+
+        .page-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .table {
+            font-size: 0.875rem;
+        }
+
+        .table thead th,
+        .table tbody td {
+            padding: 0.75rem 0.5rem;
+        }
+    }
+/* Box style for navbar links */
+.nav-link.nav-box {
+    display: inline-block;
+    background-color: #d4edda; /* light green */
+    color: #155724;            /* dark green text */
+    padding: 0.5rem 1rem;      /* vertical and horizontal padding */
+    border-radius: 8px;        /* rounded corners */
+    margin-right: 0.5rem;      /* spacing between links */
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.nav-link.nav-box:hover,
+.nav-link.nav-box:focus {
+    background-color: #c3e6cb; /* slightly darker green on hover */
+    color: #0b2e13;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+body {
+    background-color: #f3e8ff; /* Light purple */
+    min-height: 100vh;         /* Ensure full page coverage */
+}

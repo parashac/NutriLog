@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Food Log - NutriLog{% endblock %}
+
+
+{% block content %}
+{% include 'home/nav.html' %}
+<div class="food-log-container">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1 class="page-title">Your Food Log</h1>
+        <a href="{% url 'add-food-log' %}" class="btn-add-food">
+            <span>+</span>
+            <span>Add Food</span>
+        </a>
+    </div>
+
+    <!-- Stats Summary -->
+    <div class="stats-summary">
+        <div class="stat-card">
+            <div class="stat-label">Today's Calories</div>
+            <div class="stat-value">
+                {{ today_intake }}
+                <span class="stat-unit">kcal</span>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Calories Burned</div>
+            <div class="stat-value text-success">
+                {{ burned_today }}
+                <span class="stat-unit">kcal</span>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Total Entries</div>
+            <div class="stat-value">
+                {{ food_logs.count }}
+            </div>
+        </div>
+    </div>
+
+    {% include 'food log/table.html' %}
+
+</div>
+{% endblock %}
+

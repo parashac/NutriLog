@@ -1,0 +1,31 @@
+<div class="col-md-4">
+    <div class="card shadow-sm p-3 h-100">
+        <h6 class="text-muted text-center mb-3">Calories Distribution</h6>
+
+        <div class="row">
+            <!-- FOOD INTAKE -->
+            <div class="col-6 text-center">
+                {% if food_today %}
+                    <div class="chart-box">
+                        <canvas id="foodIntakeChart"></canvas>
+                    </div>
+                {% else %}
+                    <p class="text-muted small">No food logged</p>
+                {% endif %}
+                <small class="text-muted">Food Intake</small>
+            </div>
+
+            <!-- EXERCISE BURN -->
+            <div class="col-6 text-center">
+                {% if today_exercises %}
+                    <div class="chart-box">
+                        <canvas id="exerciseBurnChart"></canvas>
+                    </div>
+                {% else %}
+                    <p class="text-muted small">No exercise</p>
+                {% endif %}
+                <small class="text-muted">Exercise Burn</small>
+            </div>
+        </div>
+    </div>
+</div>

@@ -50,7 +50,7 @@ class Meal(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.get_meal_type_display()} - {self.user.user.username}"
+        return f"{self.get_meal_type_display()}"
 
 
 class FoodLog(models.Model):

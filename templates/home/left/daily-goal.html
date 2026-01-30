@@ -3,8 +3,8 @@
 
                 <div class="col-md-4">
                     <div class="card shadow-sm text-center p-3">
-                        <h6 class="text-muted">Daily Calorie Target</h6>
-                        <h3>{{ daily_target }} kcal</h3>
+                        <h6 class="text-muted">Today's Calorie Intake</h6>
+                        <h3>{{ today_intake }} kcal</h3>
                     </div>
                 </div>
 
@@ -17,9 +17,11 @@
 
                 <div class="col-md-4">
                     <div class="card shadow-sm text-center p-3">
-                        <h6 class="text-muted">Remaining</h6>
-                        <h3 class="text-danger">{{ remaining }} kcal</h3>
+                        <h6 class="text-muted">Target</h6>
+                        <h3 >{{ daily_target }} kcal</h3>
                     </div>
                 </div>
+            {% include 'home/left/donut-bar.html' %}
+
 
             </div>

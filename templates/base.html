@@ -38,5 +38,109 @@
             {% endfor %}
         ];
     </script>
+
+<script>
+    const burned = {{ burned_today|default:0 }};
+    const remaining = {{ remaining|default:0 }};
+
+    const ctx = document.getElementById('dailyGoalChart').getContext('2d');
+
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Burned', 'Remaining'],
+            datasets: [{
+                data: [burned, remaining],
+                backgroundColor: [
+                    '#28a745',  // green
+                    '#dc3545'   // red
+                ],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            cutout: '70%',
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+</script>
+<script>
+    const foodLabels = [
+        {% for f in food_today %}
+            "{{ f.food_item.name_1 }}",
+        {% endfor %}
+    ];
+
+    const foodCalories = [
+        {% for f in food_today %}
+            {{ f.calories }},
+        {% endfor %}
+    ];
+</script>
+<script>
+    const exerciseLabels = [
+        {% for e in today_exercises %}
+            "{{ e.exercise.name }}",
+        {% endfor %}
+    ];
+
+    const exerciseCalories = [
+        {% for e in today_exercises %}
+            {{ e.calories_burned }},
+        {% endfor %}
+    ];
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    function createMultiDonut(canvasId, labels, data) {
+        new Chart(document.getElementById(canvasId), {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 12
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Food intake distribution
+    if (foodCalories.length > 0) {
+    createMultiDonut(
+        'foodIntakeChart',
+        foodLabels,
+        foodCalories
+    );
+}
+    // Exercise burn distribution
+    if (exerciseCalories.length > 0) {
+    createMultiDonut(
+        'exerciseBurnChart',
+        exerciseLabels,
+        exerciseCalories
+    );
+}
+</script>
+
 </body>
 </html>
