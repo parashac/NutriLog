@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+<body class="bg-light">
+
+<div class="container-fluid py-4">
+
+    <!-- HEADER -->
+    <div class="row mb-4">
+        <div class="col">
+            <h2 class="fw-bold">NutriLog Dashboard</h2>
+            <p class="text-muted">Track your calories, exercises, and progress</p>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-9">
+
+            {% include 'home/left/daily-goal.html' %}
+            {% include 'home/left/today-exercise.html' %}
+            {% include 'home/left/weekly-bar.html' %}
+
+        </div>
+        <div class="col-lg-3">
+              {% include 'home/right/goal.html' %}
+              {% include 'home/right/suggest-exercise.html' %}
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
+{% endblock content %}

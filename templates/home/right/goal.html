@@ -1,0 +1,14 @@
+ <!-- GOAL STATUS -->
+            <div class="card shadow-sm mb-4 text-center p-3">
+                <h6 class="text-muted">Goal Status</h6>
+
+                {% if remaining == 0 %}
+                    <h4 class="text-success">Goal Completed </h4>
+                {% else %}
+                    <h5>{{ remaining }} kcal to go</h5>
+                {% endif %}
+            </div>
+
+
+
+

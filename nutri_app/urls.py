@@ -2,6 +2,6 @@ from django.urls import path
 from nutri_app import views
 
 urlpatterns = [
-    path("", views.Dashboard.as_view(),name = "dashboard"),
-
+    path("", views.DashboardView,name="dashboard"),
+    # path("dashboard/", views.DashboardView().as_view(), name="dashboard")
 ]
