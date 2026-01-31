@@ -129,6 +129,7 @@ h3, h4 {
         color: white;
     }
 
+
     .date-time {
         color: #2c3e50;
         font-weight: 600;
@@ -266,27 +267,127 @@ body {
     background-color: #f3e8ff; /* Light purple */
     min-height: 100vh;         /* Ensure full page coverage */
 }
-.exercise-badge {
+.ex-badge {
     display: inline-block;
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.9rem;
     border-radius: 6px;
     font-weight: 600;
     font-size: 0.875rem;
     text-align: center;
     min-width: 90px;
-}
-
-.exercise-badge.category-cardio {
-    background-color: #dc3545;
     color: white;
 }
 
-.exercise-badge.category-strength {
-    background-color: #28a745;
-    color: white;
+/* Category Colors */
+.ex-badge.category-cardio {
+    background-color: #dc3545; /* red */
 }
 
-.exercise-badge.category-flexibility {
-    background-color: #0d6efd;
-    color: white;
+.ex-badge.category-strength {
+    background-color: #28a745; /* green */
+}
+
+.ex-badge.category-flexibility {
+    background-color: #0d6efd; /* blue */
+}
+
+.ex-badge.category-yoga {
+    background-color: #f6c23e; /* yellow */
+    color: #2c3e50;
+}
+
+.ex-badge.category-balance {
+    background-color: #36b9cc; /* cyan */
+}
+/* Charts Section */
+.charts {
+    background: lightlightgreen;
+    padding: 50px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 150px;
+    align-items: start;
+}
+
+.chart-container {
+    position: relative;
+    width: 110%;
+}
+
+.chart-container h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1d1d1f;
+    margin-bottom: 0px;
+}
+
+/* Workout Breakdown Chart (Pie/Doughnut) */
+#workoutBreakdownChart {
+    width: 400px;
+    height: 400px;
+    margin:  auto;
+    display: block;
+}
+
+/* Weekly Burn Chart (Bar Chart) */
+#weeklyBurnChart {
+    width: 80% !important;
+    height: 400px !important;
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .charts {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    #workoutBreakdownChart {
+        max-width: 320px;
+        max-height: 320px;
+    }
+
+    #weeklyBurnChart {
+        height: 280px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .charts {
+        padding: 20px;
+        gap: 25px;
+    }
+
+    .chart-container h3 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    #workoutBreakdownChart {
+        max-width: 260px;
+        max-height: 260px;
+    }
+
+    #weeklyBurnChart {
+        height: 250px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .charts {
+        padding: 15px;
+    }
+
+    #workoutBreakdownChart {
+        max-width: 220px;
+        max-height: 220px;
+    }
+
+    #weeklyBurnChart {
+        height: 220px !important;
+    }
 }

@@ -141,6 +141,104 @@
     );
 }
 </script>
+    <script>
+        // Pie Chart for Workout Breakdown
+        const breakdownData = {
+            labels: [
+                {% for item in workout_breakdown %}
+                    '{{ item.exercise__category }}',
+                {% endfor %}
+            ],
+            datasets: [{
+                label: 'Calories Burned',
+                data: [
+                    {% for item in workout_breakdown %}
+                        {{ item.total }},
+                    {% endfor %}
+                ],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.7)',   // Cardio - Blue
+                    'rgba(255, 99, 132, 0.7)',   // Strength - Red
+                    'rgba(75, 192, 192, 0.7)'    // Yoga - Green
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
 
+        const breakdownConfig = {
+            type: 'pie',
+            data: breakdownData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                let percent = (context.raw / total * 100).toFixed(0);
+                                return context.label + ': ' + percent + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        new Chart(
+            document.getElementById('workoutBreakdownChart'),
+            breakdownConfig
+        );
+
+        // Bar Chart for Weekly Calories Burned
+        const weeklyData = {
+            labels: [
+                {% for item in weekly_burn %}
+                    '{{ item.date|date:"D" }}',
+                {% endfor %}
+            ],
+            datasets: [{
+                label: 'Calories Burned',
+                data: [
+                    {% for item in weekly_burn %}
+                        {{ item.total }},
+                    {% endfor %}
+                ],
+                backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        const weeklyConfig = {
+            type: 'bar',
+            data: weeklyData,
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        new Chart(
+            document.getElementById('weeklyBurnChart'),
+            weeklyConfig
+        );
+    </script>
 </body>
 </html>

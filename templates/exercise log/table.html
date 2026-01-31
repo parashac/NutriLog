@@ -19,9 +19,9 @@
                             {{ log.date|date:"M d, Y" }}
                         </td>
                         <td>
-                           <span class="exercise-badge category-{{ log.exercise.category|lower }}">
-                                {{ log.exercise.category }}
-                            </span>
+                            <span class="ex-badge category-{{ log.exercise.category|lower|slugify }}">
+                                 {{ log.exercise.category }}
+   </                       <span>
 
                         </td>
                         <td class="quantity">{{ log.exercise }}</td>
