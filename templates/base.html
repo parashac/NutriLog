@@ -72,7 +72,7 @@
 <script>
     const foodLabels = [
         {% for f in food_today %}
-            "{{ f.food_item.name_1 }}",
+            "{{ f.food_item }}",
         {% endfor %}
     ];
 

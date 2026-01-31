@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div style="
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+">
+
+    <div style="
+        width: 100%;
+        max-width: 420px;
+        background: white;
+        padding: 2.5rem;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    ">
+
+        <!-- Title -->
+        <h2 style="
+            text-align: center;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: #4B0082;
+        ">
+            Welcome Back 👋
+        </h2>
+
+        <p style="
+            text-align: center;
+            color: #6c757d;
+            margin-bottom: 2rem;
+        ">
+            Login to your Nutri-Log account
+        </p>
+
+        {% if form.errors and form.non_field_errors %}
+            <div style="
+                background: #fdecea;
+                color: #842029;
+                padding: 0.75rem;
+                border-radius: 6px;
+                margin-bottom: 1rem;
+                font-size: 0.9rem;
+            ">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- Username -->
+            <div style="margin-bottom: 1.2rem;">
+                <label for="username" style="
+                    font-weight: 600;
+                    margin-bottom: 0.3rem;
+                    display: block;
+                ">
+                    Username
+                </label>
+                {{ form.username.errors }}
+                <input type="text" name="username" id="username"
+                       value="{{ form.username.value|default_if_none:'' }}"
+                       style="
+                           width: 100%;
+                           padding: 0.6rem 0.75rem;
+                           border-radius: 8px;
+                           border: 1px solid #ced4da;
+                           outline: none;
+                           font-size: 1rem;
+                       ">
+            </div>
+
+            <!-- Password -->
+            <div style="margin-bottom: 1.5rem;">
+                <label for="password" style="
+                    font-weight: 600;
+                    margin-bottom: 0.3rem;
+                    display: block;
+                ">
+                    Password
+                </label>
+                {{ form.password.errors }}
+                <input type="password" name="password" id="password"
+                       style="
+                           width: 100%;
+                           padding: 0.6rem 0.75rem;
+                           border-radius: 8px;
+                           border: 1px solid #ced4da;
+                           outline: none;
+                           font-size: 1rem;
+                       ">
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" style="
+                width: 100%;
+                padding: 0.7rem;
+                border-radius: 10px;
+                border: none;
+                background: linear-gradient(135deg, #6f42c1, #4B0082);
+                color: white;
+                font-weight: 700;
+                font-size: 1.05rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            "
+            onmouseover="this.style.opacity='0.9'"
+            onmouseout="this.style.opacity='1'">
+                LOGIN
+            </button>
+
+        </form>
+        <!-- Register Link -->
+        <div style="
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            color: #6c757d;
+        ">
+            Don’t have an account?
+            <a href="#" style="
+                color: #6f42c1;
+                font-weight: 700;
+                text-decoration: none;
+                margin-left: 4px;
+            "
+            onmouseover="this.style.textDecoration='underline'"
+            onmouseout="this.style.textDecoration='none'">
+                Create a new account
+            </a>
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock content %}

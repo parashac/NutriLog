@@ -1,32 +1,32 @@
- <!-- TODAY EXERCISES -->
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">Today’s Exercises</h5>
-
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Exercise</th>
-                                <th>Duration (min)</th>
-                                <th>Calories Burned</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for log in today_exercises %}
-                            <tr>
-                                <td>{{ log.exercise.name }}</td>
-                                <td>{{ log.duration_minutes }}</td>
-                                <td>{{ log.calories_burned }}</td>
-                            </tr>
-                            {% empty %}
-                            <tr>
-                                <td colspan="3" class="text-center text-muted">
-                                    No exercise logged today
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-
-                </div>
+    <!-- Today Exercises Table -->
+    <div class="col-lg-4 col-md-12">
+        <div class="card shadow-sm p-3 h-100">
+            <h5 class="card-title text-center mb-3">Today’s Exercises</h5>
+            <div class="table-responsive">
+                <table class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th>Exercise</th>
+                            <th>Duration (min)</th>
+                            <th>Calories Burned</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for log in today_exercises %}
+                        <tr>
+                            <td>{{ log.exercise.name }}</td>
+                            <td>{{ log.duration_minutes }}</td>
+                            <td>{{ log.calories_burned }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="3" class="text-center text-muted">
+                                No exercise logged today
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
+        </div>
+    </div>

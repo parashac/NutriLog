@@ -391,3 +391,15 @@ body {
         height: 220px !important;
     }
 }
+.donut-container {
+    width: 280px;       /* container width */
+    height: 200px;      /* container height */
+    padding: 1.5rem;    /* inner spacing */
+    margin: 1rem;       /* spacing around container */
+    display: flex;
+    justify-content: center; /* center content horizontally */
+    align-items: center;     /* center content vertically */
+    border-radius: 12px;     /* rounded corners */
+    background-color: #fff;  /* container background */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* soft shadow */
+}

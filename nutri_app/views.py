@@ -6,8 +6,9 @@ from django.db import models
 from nutri_app.forms import FoodLogForm, ExerciseLogForm
 from nutri_app.models import ExerciseLog, DailyGoal, Exercise, FoodLog
 from nutri_app.models import FoodLog
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+@login_required
 def DashboardView(request):
     today = timezone.now().date()
     goal= DailyGoal.objects.get()
@@ -19,7 +20,10 @@ def DashboardView(request):
     remaining_cal = max(target-total_burn, 0)
 
     today_exercise = ExerciseLog.objects.filter(date=today)
-    suggest_exercises = Exercise.objects.all()[:5]
+
+    suggest_exercises = Exercise.objects.all()[:10]
+
+    food_today = FoodLog.objects.filter( date=today)
 
     start_date = today -timedelta(days=6)
     weekly_data = (
@@ -43,10 +47,12 @@ def DashboardView(request):
         "weekly_data": weekly_data,
         "suggested_exercises": suggest_exercises,
         "today_intake": today_intake,
+        "food_today": food_today
     }
 
     return render(request, "home/dashboard.html", context)
 
+@login_required
 def FoodLogList(request):
     today = timezone.now().date()
     user_profile = request.user.userprofile
@@ -70,10 +76,12 @@ def FoodLogList(request):
         "food_logs": food_logs,
         "today_intake": today_intake,
         "burned_today": burned_today,
+
     }
 
     return render(request, 'food log/food-list.html', context)
 
+@login_required
 def AddFood(request):
     """
     Add a new food entry.
@@ -92,10 +100,8 @@ def AddFood(request):
         'form': form,
         'title': 'Add Food'
     })
+@login_required
 def EditFood(request, pk):
-    """
-    Edit an existing food entry.
-    """
     food_item = get_object_or_404(FoodLog, id=pk, user=request.user.userprofile)
 
     if request.method == 'POST':
@@ -111,6 +117,7 @@ def EditFood(request, pk):
         'title': 'Edit Food',
         'edit_item': food_item
     })
+@login_required
 def DeleteFood(request, pk):
     """
     Delete a food entry with confirmation.
@@ -124,7 +131,7 @@ def DeleteFood(request, pk):
     return render(request, 'food log/delete.html', {
         'food': food_item
     })
-
+@login_required
 def ExerciseLogView(request):
     today = timezone.now().date()
     user_profile = request.user.userprofile
@@ -147,7 +154,7 @@ def ExerciseLogView(request):
     workout_breakdown = (
         ExerciseLog.objects
         .filter(user=user_profile)
-        .values('exercise__category')  # or exercise__name
+        .values('exercise__category')
         .annotate(total=models.Sum('calories_burned'))
     )
 
@@ -170,6 +177,7 @@ def ExerciseLogView(request):
     }
 
     return render(request, 'exercise log/exercise-log.html', context)
+@login_required
 def AddExercise(request):
     if request.method == 'POST':
         form = ExerciseLogForm(request.POST)
@@ -185,6 +193,7 @@ def AddExercise(request):
         'form': form,
         'title': 'Add Exercise'
     })
+@login_required
 def EditExercise(request, pk):
     exercise = get_object_or_404(ExerciseLog, id=pk, user=request.user.userprofile)
 
@@ -201,6 +210,7 @@ def EditExercise(request, pk):
         'title': 'Edit Exercise',
         'edit_item': exercise
     })
+@login_required
 def DeleteExercise(request, pk):
     exercise_log = get_object_or_404(ExerciseLog, id=pk, user=request.user.userprofile)
 

@@ -8,20 +8,28 @@
       <a href="{% url 'dashboard' %}">
         <img src="{% static 'img/img.png' %}" alt="NutriLog" width="150">
       </a>
-      <a class="nav-link" href="{% url 'dashboard' %}">Nutri-Log</a>
+      <a class="nav-link" href="{% url 'dashboard' %}"
+        style="font-family: 'Segoe UI', sans-serif; font-size: 1.6rem; font-weight: 800; color: #4B0082; text-decoration: none; margin-left: 10px;">
+          Nutri-Log
+        </a>
     </div>
 
    <!-- Center: Navigation -->
 <nav class="d-none d-lg-block">
   <ul class="nav">
     <li class="nav-item">
-      <a class="nav-link nav-box" href="{% url 'dashboard' %}">Dashboard</a>
+    <a class="nav-link nav-box" href="{% url 'dashboard' %}"
+        style="font-family: 'Segoe UI', sans-serif; font-size: 1.1rem; font-weight: 700; padding: 0.6rem 1.2rem;">
+          Dashboard
+        </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link nav-box" href="{% url 'food-log' %}">Food Log</a>
+      <a class="nav-link nav-box" href="{% url 'food-log' %}"
+         style="font-family: 'Segoe UI', sans-serif; font-size: 1.1rem; font-weight: 700; padding: 0.6rem 1.2rem;">Food Log</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link nav-box" href="{% url 'exercise-log' %}" >Exercise Log</a>
+      <a class="nav-link nav-box" href="{% url 'exercise-log' %}"
+      style="font-family: 'Segoe UI', sans-serif; font-size: 1.1rem; font-weight: 700; padding: 0.6rem 1.2rem;">Exercise Log</a>
     </li>
   </ul>
 </nav>
@@ -36,15 +44,19 @@
       {% if user.is_authenticated %}
       <div class="dropdown">
         <a class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="#" alt="Profile" width="35" height="35" class="rounded-circle me-2">
+          <img src="{% static 'img/img1.png' %}" alt="Profile" width="35" height="35" class="rounded-circle me-2">
           <span>{{ user.username }}</span>
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="#">Profile</a></li>
-          <li><a class="dropdown-item" href="#">Settings</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">Logout</a></li>
-        </ul>
+      <li>
+        <form method="post" action="{% url 'logout' %}" class="m-0">
+          {% csrf_token %}
+          <button type="submit" class="dropdown-item">
+            Logout
+          </button>
+        </form>
+      </li>
+    </ul>
       </div>
       {% else %}
       <a href="#" class="btn btn-outline-primary btn-sm me-2">Sign In</a>
