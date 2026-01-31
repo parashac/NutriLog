@@ -266,3 +266,27 @@ body {
     background-color: #f3e8ff; /* Light purple */
     min-height: 100vh;         /* Ensure full page coverage */
 }
+.exercise-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-align: center;
+    min-width: 90px;
+}
+
+.exercise-badge.category-cardio {
+    background-color: #dc3545;
+    color: white;
+}
+
+.exercise-badge.category-strength {
+    background-color: #28a745;
+    color: white;
+}
+
+.exercise-badge.category-flexibility {
+    background-color: #0d6efd;
+    color: white;
+}

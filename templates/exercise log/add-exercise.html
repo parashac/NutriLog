@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Exercise - NutriLog{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 700px;">
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-primary text-white rounded-top-4">
+            <h4 class="mb-0">🍽️ Add Exercise</h4>
+        </div>
+
+        <div class="card-body p-4">
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Date</label>
+                        {{ form.date }}
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Exercise Type</label>
+                        {{ form.exercise_type }}
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold"> Exercise</label>
+                        {{ form.exercise }}
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Duration (mins)</label>
+                        {{ form.duration_minutes }}
+                    </div>
+
+                </div>
+
+                <div class="d-flex justify-content-end gap-2 mt-4">
+                    <a href="{% url 'exercise-log' %}" class="btn btn-outline-secondary px-4">
+                        Cancel
+                    </a>
+                    <button type="submit" class="btn btn-primary px-4">
+                        Save exercise
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
